@@ -1,73 +1,119 @@
-# 	Quesion 1. Total policy   #
-select distinct count(policy_id) from policy_details;
-/*____________________________________________________*/
+-- ============================================================
+-- INSURANCE ANALYTICS PROJECT
+-- SQL Data Analysis
+-- Author: Sanjay Balan
+-- ============================================================
 
-# Quesion 2. #
-SELECT COUNT(DISTINCT customer_id) as Total_customer
+
+-- ============================================================
+-- 1. TOTAL NUMBER OF POLICIES
+-- ============================================================
+
+SELECT COUNT(DISTINCT policy_id) AS Total_Policies
 FROM policy_details;
 
-# Quesion 3. ##################################
-SELECT 
+
+-- ============================================================
+-- 2. TOTAL NUMBER OF CUSTOMERS
+-- ============================================================
+
+SELECT COUNT(DISTINCT customer_id) AS Total_Customers
+FROM policy_details;
+
+
+-- ============================================================
+-- 3. POLICY DISTRIBUTION BY AGE GROUP
+-- ============================================================
+
+SELECT
     c.age_bucket,
-    COUNT(p.policy_id) AS total_policies
-FROM customers c
-JOIN policy_details p
+    COUNT(p.policy_id) AS Total_Policies
+FROM customers AS c
+JOIN policy_details AS p
     ON c.customer_id = p.customer_id
 GROUP BY c.age_bucket
-ORDER BY c.age_bucket; 
-
-########QUESION 4. ###############################
-select 
-c.gender,
-COUNT(p.policy_id) AS total_policies
-FROM customers c
-join policy_details p
-ON c.customer_id = p. customer_id
-group by c.gender
-order by c.gender;
+ORDER BY c.age_bucket;
 
 
-# QUESION 5. #########################################
+-- ============================================================
+-- 4. POLICY DISTRIBUTION BY GENDER
+-- ============================================================
 
-SELECT 
+SELECT
+    c.gender,
+    COUNT(p.policy_id) AS Total_Policies
+FROM customers AS c
+JOIN policy_details AS p
+    ON c.customer_id = p.customer_id
+GROUP BY c.gender
+ORDER BY c.gender;
+
+
+-- ============================================================
+-- 5. POLICY DISTRIBUTION BY POLICY TYPE
+-- ============================================================
+
+SELECT
     policy_type,
-    COUNT(policy_id) AS total_policies
+    COUNT(policy_id) AS Total_Policies
 FROM policy_details
 GROUP BY policy_type
-ORDER BY total_policies DESC;
+ORDER BY Total_Policies DESC;
 
-# QUESION 6. ##########################################
-SELECT policy_type, COUNT(*) AS Expire_policies
+
+-- ============================================================
+-- 6. POLICIES EXPIRING IN 2026
+-- ============================================================
+
+SELECT
+    policy_type,
+    COUNT(*) AS Expiring_Policies
 FROM policy_details
-WHERE policy_end_date 
-BETWEEN '2026-01-01' AND '2026-12-31'
-GROUP BY policy_type;
+WHERE policy_end_date BETWEEN '2026-01-01' AND '2026-12-31'
+GROUP BY policy_type
+ORDER BY Expiring_Policies DESC;
 
-# Quesion 7. #########################################
-SELECT 
-    YEAR(policy_start_date) AS year,
-    SUM(premium_amount) AS total_premium
+
+-- ============================================================
+-- 7. TOTAL PREMIUM BY POLICY START YEAR
+-- ============================================================
+
+SELECT
+    YEAR(policy_start_date) AS Policy_Start_Year,
+    SUM(premium_amount) AS Total_Premium
 FROM policy_details
 GROUP BY YEAR(policy_start_date)
-ORDER BY year;
+ORDER BY Policy_Start_Year;
 
-# QUESION 8 . ########################################
-SELECT 
+
+-- ============================================================
+-- 8. POLICY COUNT BY CLAIM STATUS
+-- ============================================================
+
+SELECT
     claim_status,
-    COUNT(DISTINCT policy_id) AS policy_count
+    COUNT(DISTINCT policy_id) AS Policy_Count
 FROM claims
 GROUP BY claim_status
-ORDER BY policy_count DESC;
+ORDER BY Policy_Count DESC;
 
-# Quesion 9. ############################
-SELECT 
+
+-- ============================================================
+-- 9. POLICY COUNT BY PAYMENT STATUS
+-- ============================================================
+
+SELECT
     payment_status,
-    COUNT(DISTINCT policy_id) AS policy_count
+    COUNT(DISTINCT policy_id) AS Policy_Count
 FROM payments
 GROUP BY payment_status
-ORDER BY policy_count DESC;
-
-#   Quesion 10.#####################
-select sum(claim_amount) as Total_claim_amount from claims ;
+ORDER BY Policy_Count DESC;
 
 
+-- ============================================================
+-- 10. TOTAL CLAIM AMOUNT
+-- ============================================================
+
+SELECT
+    SUM(claim_amount) AS Total_Claim_Amount
+FROM claims;
