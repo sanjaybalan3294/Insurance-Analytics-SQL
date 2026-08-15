@@ -82,9 +82,9 @@ SELECT
     YEAR(policy_start_date) AS Policy_Start_Year,
     SUM(premium_amount) AS Total_Premium
 FROM policy_details
+WHERE YEAR(policy_start_date) BETWEEN 2014 AND 2024
 GROUP BY YEAR(policy_start_date)
 ORDER BY Policy_Start_Year;
-
 
 -- ============================================================
 -- 8. POLICY COUNT BY CLAIM STATUS
