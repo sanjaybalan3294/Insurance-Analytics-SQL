@@ -1,4 +1,4 @@
-# - `Insurance_Analytics.sql` – SQL queries used to perform the complete insurance data analysis.
+#  `Insurance_Analytics.sql` – SQL queries used to perform the complete insurance data analysis.
 
 ## 📊 Project Overview
 
