@@ -2,13 +2,13 @@
 
 ## 📊 Project Overview
 
-This project analyzes insurance data using SQL to generate
-business insights related to customers, policies, premiums,
-claims, and payments.
+This project analyzes insurance data using MySQL and SQL to generate
+business insights related to customers, policies, premiums, claims,
+and payments.
 
-The analysis focuses on understanding policy distribution,
-customer demographics, policy expirations, premium trends,
-claim status, and payment status.
+The analysis covers customer demographics, policy distribution,
+policy expirations, premium trends, claim status, payment status,
+and total claim amounts.
 
 ## 🛠️ Tools & Technologies
 
