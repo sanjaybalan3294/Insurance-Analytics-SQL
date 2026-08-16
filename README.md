@@ -127,7 +127,7 @@ The project answers the following business questions:
 
 ## 📁 Project Files
 
-- `Insurance_Analytics_.sql` – SQL queries used to perform the complete insurance data analysis.
+- Insurance_Analytics_.sql – SQL queries used to perform the complete insurance data analysis.
 
 ## 🔍 Key Insights
 
